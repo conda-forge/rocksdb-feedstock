@@ -10,11 +10,15 @@ source:
   url: https://github.com/facebook/rocksdb/archive/v{{ version }}.tar.gz
   sha256: 7f34d1b55501f5273d11cd064bd34aef87c51ff114452968b86457f06cdb8ced
   patches:
+    # Avoid clock_gettime on pre-10.12 macOS versions
     # https://github.com/facebook/rocksdb/commit/20dd828c01a60ed8258723cec4e3ec58b5c5412a
     - 20dd828c01a60ed8258723cec4e3ec58b5c5412a.patch  # [osx]
+    # Support jemalloc compiled with `--with-jemalloc-prefix`
+    # https://github.com/facebook/rocksdb/commit/0d57d93a06727943dbad0bc80768a29d74ce22a0
+    - 0d57d93a06727943dbad0bc80768a29d74ce22a0.patch
 
 build:
-  number: 1
+  number: 2
   skip: true  # [win]
   run_exports:
     # Symbols are removed from a minor release to the next.

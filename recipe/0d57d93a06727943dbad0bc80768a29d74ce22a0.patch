@@ -1,0 +1,87 @@
+From 0d57d93a06727943dbad0bc80768a29d74ce22a0 Mon Sep 17 00:00:00 2001
+From: Andrew Kryczka <andrew.kryczka2@gmail.com>
+Date: Tue, 2 Jul 2019 12:03:40 -0700
+Subject: [PATCH] Support jemalloc compiled with `--with-jemalloc-prefix`
+ (#5521)
+
+Summary:
+Previously, if the jemalloc was built with nonempty string for
+`--with-jemalloc-prefix`, then `HasJemalloc()` would return false on
+Linux, so jemalloc would not be used at runtime. On Mac, it would cause
+a linker failure due to no definitions found for the weak functions
+declared in "port/jemalloc_helper.h". This should be a rare problem
+because (1) on Linux the default `--with-jemalloc-prefix` value is the
+empty string, and (2) Homebrew's build explicitly sets
+`--with-jemalloc-prefix` to the empty string.
+
+However, there are cases where `--with-jemalloc-prefix` is nonempty.
+For example, when building jemalloc from source on Mac, the default
+setting is `--with-jemalloc-prefix=je_`. Such jemalloc builds should be
+usable by RocksDB.
+
+The fix is simple. Defining `JEMALLOC_MANGLE` before including
+"jemalloc.h" causes it to define unprefixed symbols that are aliases for
+each of the prefixed symbols. Thanks to benesch for figuring this out
+and explaining it to me.
+
+Fixes https://github.com/facebook/rocksdb/issues/1462.
+Pull Request resolved: https://github.com/facebook/rocksdb/pull/5521
+
+Test Plan:
+build jemalloc with prefixed symbols:
+
+```
+$ ./configure --with-jemalloc-prefix=lol
+$ make
+```
+
+compile rocksdb against it:
+
+```
+$ WITH_JEMALLOC_FLAG=1 JEMALLOC=1 EXTRA_LDFLAGS="-L/home/andrew/jemalloc/lib/" EXTRA_CXXFLAGS="-I/home/andrew/jemalloc/include/" make -j12 ./db_bench
+```
+
+run db_bench and verify jemalloc actually used:
+
+```
+$ ./db_bench -benchmarks=fillrandom -statistics=true -dump_malloc_stats=true -stats_dump_period_sec=1
+$ grep jemalloc /tmp/rocksdbtest-1000/dbbench/LOG
+2019/06/29-12:20:52.088658 7fc5fb7f6700 [_impl/db_impl.cc:837] ___ Begin jemalloc statistics ___
+...
+```
+
+Differential Revision: D16092758
+
+fbshipit-source-id: c2c358346190ed62ceb2a3547a6c4c180b12f7c4
+---
+ db/malloc_stats.cc     | 4 ----
+ port/jemalloc_helper.h | 1 +
+ 2 files changed, 1 insertion(+), 4 deletions(-)
+
+diff --git a/db/malloc_stats.cc b/db/malloc_stats.cc
+index bcee5c3fbf..1dfe0d55b4 100644
+--- a/db/malloc_stats.cc
++++ b/db/malloc_stats.cc
+@@ -20,10 +20,6 @@ namespace rocksdb {
+ 
+ #ifdef ROCKSDB_JEMALLOC
+ 
+-#ifdef JEMALLOC_NO_RENAME
+-#define malloc_stats_print je_malloc_stats_print
+-#endif
+-
+ typedef struct {
+   char* cur;
+   char* end;
+diff --git a/port/jemalloc_helper.h b/port/jemalloc_helper.h
+index 26e5fb6633..6aeb780ee6 100644
+--- a/port/jemalloc_helper.h
++++ b/port/jemalloc_helper.h
+@@ -9,6 +9,7 @@
+ #ifdef __FreeBSD__
+ #include <malloc_np.h>
+ #else
++#define JEMALLOC_MANGLE
+ #include <jemalloc/jemalloc.h>
+ #endif
+ 
