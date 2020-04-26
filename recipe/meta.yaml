@@ -12,7 +12,7 @@ source:
   patches:
     - 0001-Include-linux-falloc.h.patch
     # https://github.com/facebook/rocksdb/commit/20dd828c01a60ed8258723cec4e3ec58b5c5412a
-    - 20dd828c01a60ed8258723cec4e3ec58b5c5412a.patch
+    - 20dd828c01a60ed8258723cec4e3ec58b5c5412a.patch  # [osx]
 
 build:
   number: 1
