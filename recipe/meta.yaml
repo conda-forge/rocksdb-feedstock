@@ -9,6 +9,9 @@ source:
   folder: src
   url: https://github.com/facebook/rocksdb/archive/v{{ version }}.tar.gz
   sha256: 7f34d1b55501f5273d11cd064bd34aef87c51ff114452968b86457f06cdb8ced
+  patches:
+    # https://github.com/facebook/rocksdb/commit/20dd828c01a60ed8258723cec4e3ec58b5c5412a
+    - 20dd828c01a60ed8258723cec4e3ec58b5c5412a.patch  # [osx]
 
 build:
   number: 1
