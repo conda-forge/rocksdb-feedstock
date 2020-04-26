@@ -8,6 +8,7 @@ cmake -g Ninja \
       -DCMAKE_INSTALL_LIBDIR=lib \
       -DCMAKE_BUILD_TYPE=Release \
       -DFAIL_ON_WARNINGS=ON \
+      -DPORTABLE=ON \
       -DUSE_RTTI=ON \
       -DWITH_BENCHMARK_TOOLS:BOOL=OFF \
       -DWITH_GFLAGS=ON \
