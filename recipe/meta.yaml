@@ -1,5 +1,5 @@
 {% set name = "rocksdb" %}
-{% set version = "6.3.6" %}
+{% set version = "6.4.6" %}
 
 package:
   name: rocksdb
@@ -8,7 +8,9 @@ package:
 source:
   folder: src
   url: https://github.com/facebook/rocksdb/archive/v{{ version }}.tar.gz
-  sha256: 9878beb4e9b74a5f0d9500772235a39066fd019ba7af9ae6afe483ca713e3c7c
+  sha256: 540bbf9369a31e0891fcb4056a36ffa439c59fc179aa0b1f46e3478417f97643
+  patches:
+    - 0001-Include-linux-falloc.h.patch
 
 build:
   number: 1
