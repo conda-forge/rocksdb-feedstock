@@ -1,0 +1,54 @@
+From 20dd828c01a60ed8258723cec4e3ec58b5c5412a Mon Sep 17 00:00:00 2001
+From: Andrew Kryczka <andrew.kryczka2@gmail.com>
+Date: Wed, 11 Sep 2019 14:04:54 -0700
+Subject: [PATCH] Avoid clock_gettime on pre-10.12 macOS versions (#5570)
+
+Summary:
+On older macOS like 10.10 we saw the following compiler error:
+
+```
+/go/src/github.com/cockroachdb/cockroach/c-deps/rocksdb/env/env_posix.cc:845:19:
+error: use of undeclared identifier 'CLOCK_THREAD_CPUTIME_ID'
+    clock_gettime(CLOCK_THREAD_CPUTIME_ID, &ts);
+                  ^
+```
+
+According to mac's `man clock_gettime`: "These functions first appeared in Mac
+OSX 10.12". So we should not try to compile it on earlier versions.
+Pull Request resolved: https://github.com/facebook/rocksdb/pull/5570
+
+Test Plan:
+verified it compiles now on 10.10. Also did some investigation to
+ensure it does not cause regression on macOS 10.12+, although I do not
+have access to such an environment to really test.
+
+Differential Revision: D17322629
+
+Pulled By: riversand963
+
+fbshipit-source-id: e0a412223854f826b4d83e6d15c3739ff4620d7d
+---
+ env/env_posix.cc | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
+
+diff --git a/env/env_posix.cc b/env/env_posix.cc
+index 7f7f6b2df5..83e209bf1f 100644
+--- a/env/env_posix.cc
++++ b/env/env_posix.cc
+@@ -37,6 +37,7 @@
+ // Get nano time includes
+ #if defined(OS_LINUX) || defined(OS_FREEBSD)
+ #elif defined(__MACH__)
++#include <Availability.h>
+ #include <mach/clock.h>
+ #include <mach/mach.h>
+ #else
+@@ -938,7 +939,7 @@ class PosixEnv : public Env {
+ 
+   uint64_t NowCPUNanos() override {
+ #if defined(OS_LINUX) || defined(OS_FREEBSD) || defined(OS_AIX) || \
+-    defined(__MACH__)
++    (defined(__MACH__) && defined(__MAC_10_12))
+     struct timespec ts;
+     clock_gettime(CLOCK_THREAD_CPUTIME_ID, &ts);
+     return static_cast<uint64_t>(ts.tv_sec) * 1000000000 + ts.tv_nsec;
