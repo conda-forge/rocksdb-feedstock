@@ -1,13 +1,21 @@
 #!/bin/bash
 set -eu
 
+case $(uname -s) in
+    Darwin)
+        FAIL_ON_WARNINGS=OFF
+        ;;
+    Linux)
+        ;;
+esac
+
 ### Create Makefiles
 cmake -g Ninja \
       -DCMAKE_PREFIX_PATH=$PREFIX \
       -DCMAKE_INSTALL_PREFIX=$PREFIX \
       -DCMAKE_INSTALL_LIBDIR=lib \
       -DCMAKE_BUILD_TYPE=Release \
-      -DFAIL_ON_WARNINGS=ON \
+      -DFAIL_ON_WARNINGS=${FAIL_ON_WARNINGS:-ON} \
       -DPORTABLE=ON \
       -DUSE_RTTI=ON \
       -DWITH_GFLAGS=ON \

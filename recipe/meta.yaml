@@ -11,10 +11,12 @@ source:
   sha256: 540bbf9369a31e0891fcb4056a36ffa439c59fc179aa0b1f46e3478417f97643
   patches:
     - 0001-Include-linux-falloc.h.patch
+    # https://github.com/facebook/rocksdb/commit/20dd828c01a60ed8258723cec4e3ec58b5c5412a
+    - 20dd828c01a60ed8258723cec4e3ec58b5c5412a.patch  # [osx]
 
 build:
   number: 1
-  skip: true  # [not linux]
+  skip: true  # [win]
   run_exports:
     # Symbols are removed from a minor release to the next.
     # https://abi-laboratory.pro/index.php?view=timeline&l=rocksdb
