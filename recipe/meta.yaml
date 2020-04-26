@@ -11,7 +11,7 @@ source:
   sha256: 9878beb4e9b74a5f0d9500772235a39066fd019ba7af9ae6afe483ca713e3c7c
 
 build:
-  number: 0
+  number: 1
   skip: true  # [not linux]
   run_exports:
     # Symbols are removed from a minor release to the next.
