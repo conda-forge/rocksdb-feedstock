@@ -5,7 +5,7 @@ Home: https://rocksdb.org
 
 Package license: Apache-2.0
 
-Feedstock license: BSD 3-Clause
+Feedstock license: BSD-3-Clause
 
 Summary: A library that provides an embeddable, persistent key-value store for fast storage.
 
