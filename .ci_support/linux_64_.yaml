@@ -15,9 +15,9 @@ lz4_c:
 pin_run_as_build:
   lz4-c:
     max_pin: x.x.x
-  zstd:
-    max_pin: x.x.x
 snappy:
 - '1'
+target_platform:
+- linux-64
 zstd:
-- 1.4.4
+- '1.4'

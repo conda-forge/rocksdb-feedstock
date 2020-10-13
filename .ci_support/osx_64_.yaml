@@ -7,21 +7,19 @@ channel_targets:
 cxx_compiler:
 - clangxx
 cxx_compiler_version:
-- '9'
+- '10'
 gflags:
 - '2.2'
 lz4_c:
 - 1.9.2
 macos_machine:
 - x86_64-apple-darwin13.4.0
-macos_min_version:
-- '10.9'
 pin_run_as_build:
   lz4-c:
     max_pin: x.x.x
-  zstd:
-    max_pin: x.x.x
 snappy:
 - '1'
+target_platform:
+- osx-64
 zstd:
-- 1.4.4
+- '1.4'
