@@ -1,5 +1,5 @@
 {% set name = "rocksdb" %}
-{% set version = "6.10.2" %}
+{% set version = "7.9.2" %}
 
 package:
   name: rocksdb
@@ -8,7 +8,7 @@ package:
 source:
   folder: src
   url: https://github.com/facebook/rocksdb/archive/v{{ version }}.tar.gz
-  sha256: 514b315c64159dd767bbbf6430d33313903c0c9240d4249bddead5c4297d128f
+  sha256: 886378093098a1b2521b824782db7f7dd86224c232cf9652fcaf88222420b292
 
 build:
   number: 1
@@ -28,6 +28,8 @@ requirements:
     - lz4-c
     - snappy
     - zstd
+    - bzip2
+    - zlib
 
 test:
   commands:
@@ -53,3 +55,4 @@ extra:
     - oblute
     - rluria14
     - sodre
+    - hadim
