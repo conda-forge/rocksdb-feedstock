@@ -11,8 +11,7 @@ source:
   sha256: 514b315c64159dd767bbbf6430d33313903c0c9240d4249bddead5c4297d128f
 
 build:
-  number: 0
-  skip: true  # [win]
+  number: 1
   run_exports:
     # Symbols are removed from a minor release to the next.
     # https://abi-laboratory.pro/index.php?view=timeline&l=rocksdb
@@ -25,17 +24,19 @@ requirements:
     - ninja >=1.10,<2
   host:
     - gflags
-    - jemalloc
+    - jemalloc  # [not win]
     - lz4-c
     - snappy
     - zstd
 
 test:
   commands:
-    - test -f ${PREFIX}/lib/librocksdb.a
-    - test -f ${PREFIX}/lib/librocksdb.dylib  # [osx]
-    - test -f ${PREFIX}/lib/librocksdb.so     # [linux]
-    - test -f ${PREFIX}/include/rocksdb/db.h
+    - test -f ${PREFIX}/lib/librocksdb.a                           # [unix]
+    - test -f ${PREFIX}/lib/librocksdb${SHLIB_EXT}                 # [unix]
+    - test -f ${PREFIX}/include/rocksdb/db.h                       # [unix]
+    - if not exist %LIBRARY_PREFIX%\lib\rocksdb.lib exit 1         # [win]
+    - if not exist %LIBRARY_PREFIX%\lib\rocksdb-shared.lib exit 1  # [win]
+    - if not exist %LIBRARY_PREFIX%\include\rocksdb\db.h exit 1    # [win]
 
 about:
   home: https://rocksdb.org
