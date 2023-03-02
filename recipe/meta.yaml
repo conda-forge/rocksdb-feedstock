@@ -1,5 +1,5 @@
 {% set name = "rocksdb" %}
-{% set version = "7.9.2" %}
+{% set version = "7.10.2" %}
 
 package:
   name: rocksdb
@@ -8,10 +8,10 @@ package:
 source:
   folder: src
   url: https://github.com/facebook/rocksdb/archive/v{{ version }}.tar.gz
-  sha256: 886378093098a1b2521b824782db7f7dd86224c232cf9652fcaf88222420b292
+  sha256: 4619ae7308cd3d11cdd36f0bfad3fb03a1ad399ca333f192b77b6b95b08e2f78
 
 build:
-  number: 1
+  number: 0
   run_exports:
     # Symbols are removed from a minor release to the next.
     # https://abi-laboratory.pro/index.php?view=timeline&l=rocksdb
