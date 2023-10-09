@@ -189,6 +189,7 @@ Feedstock Maintainers
 
 * [@benhuff](https://github.com/benhuff/)
 * [@hadim](https://github.com/hadim/)
+* [@jjerphan](https://github.com/jjerphan/)
 * [@oblute](https://github.com/oblute/)
 * [@rluria14](https://github.com/rluria14/)
 * [@sodre](https://github.com/sodre/)
