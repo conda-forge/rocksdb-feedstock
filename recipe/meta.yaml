@@ -10,8 +10,8 @@ source:
   url: https://github.com/facebook/rocksdb/archive/v{{ version }}.tar.gz
   sha256: 766e976adc52a866b5b274ed0fef28ca890ad983081c0c56b460f53dc105e41d
   patches:
-    # Patch of https://github.com/facebook/rocksdb/pull/11724
-    - patches/920d72e6faf1a2cf941d9f6aaf8f771e4dbdca38.patch
+    # Backport of https://github.com/facebook/rocksdb/pull/12309
+    - patches/e09b9d0cb94fec262b2a5dc30111fd767c0664e9.patch
 
 build:
   number: 0
