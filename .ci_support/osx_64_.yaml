@@ -22,6 +22,8 @@ lz4_c:
 - 1.9.3
 macos_machine:
 - x86_64-apple-darwin13.4.0
+rocksdb:
+- '9.1'
 snappy:
 - '1.2'
 target_platform:
