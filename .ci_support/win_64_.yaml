@@ -12,6 +12,8 @@ gflags:
 - '2.2'
 lz4_c:
 - 1.9.3
+rocksdb:
+- '9.1'
 snappy:
 - '1.2'
 target_platform:
