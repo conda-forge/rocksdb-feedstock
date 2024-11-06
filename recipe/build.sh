@@ -1,6 +1,6 @@
 #!/bin/bash
 set -eu
-
+exit 1
 export EXTRA_CXXFLAGS="${CXXFLAGS} -std=c++17 -mmacosx-version-min=10.14"
 
 # Enabling jemalloc does not work on OSX with the following error message:
