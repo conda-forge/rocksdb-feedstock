@@ -2,8 +2,6 @@ bzip2:
 - '1'
 c_stdlib:
 - vs
-c_stdlib_version:
-- '2019'
 channel_sources:
 - conda-forge
 channel_targets:
@@ -14,11 +12,13 @@ gflags:
 - '2.2'
 lz4_c:
 - 1.9.3
+rocksdb:
+- '9.1'
 snappy:
 - '1.2'
 target_platform:
 - win-64
 zlib:
-- '1.2'
+- '1'
 zstd:
 - '1.5'
