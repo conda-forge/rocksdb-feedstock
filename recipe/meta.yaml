@@ -1,5 +1,5 @@
 {% set name = "rocksdb" %}
-{% set version = "8.5.3" %}
+{% set version = "8.10.2" %}
 
 package:
   name: rocksdb
@@ -8,13 +8,10 @@ package:
 source:
   folder: src
   url: https://github.com/facebook/rocksdb/archive/v{{ version }}.tar.gz
-  sha256: ed4230500b9ca20bc7918c32166b2d0d46a8695c59991821daa586d55689d785
-  patches:
-    # Patch of https://github.com/facebook/rocksdb/pull/11724
-    - patches/920d72e6faf1a2cf941d9f6aaf8f771e4dbdca38.patch
+  sha256: 44b6ec2f4723a0d495762da245d4a59d38704e0d9d3d31c45af4014bee853256
 
 build:
-  number: 1
+  number: 0
   run_exports:
     # Symbols are removed from a minor release to the next.
     # https://abi-laboratory.pro/index.php?view=timeline&l=rocksdb
@@ -55,7 +52,7 @@ about:
 
 extra:
   recipe-maintainers:
-    - jjerphan
+    - jeongseok-meta
     - benhuff
     - oblute
     - rluria14
