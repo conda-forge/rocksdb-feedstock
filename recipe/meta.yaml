@@ -26,7 +26,8 @@ requirements:
   host:
     - gflags
     - jemalloc  # [not win]
-    - lz4-c
+    - lz4-c         # [not win]
+    - lz4-c-static  # [win]
     - snappy
     - zstd
     - bzip2
