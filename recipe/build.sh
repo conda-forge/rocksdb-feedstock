@@ -3,9 +3,9 @@ set -eu
 
 # Set platform-specific flags
 if [[ "${target_platform}" == linux-* ]]; then
-  export EXTRA_CXXFLAGS="${CXXFLAGS} -std=c++17 -Wno-error=array-bounds"
+  export CXXFLAGS="${CXXFLAGS} -std=c++17 -Wno-error=array-bounds"
 else
-  export EXTRA_CXXFLAGS="${CXXFLAGS} -std=c++17 -mmacosx-version-min=10.14"
+  export CXXFLAGS="${CXXFLAGS} -std=c++17 -mmacosx-version-min=10.14"
 fi
 
 # Enabling jemalloc does not work on OSX with the following error message:
