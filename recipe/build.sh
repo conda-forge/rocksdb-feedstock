@@ -1,7 +1,12 @@
 #!/bin/bash
 set -eu
 
-export EXTRA_CXXFLAGS="${CXXFLAGS} -std=c++17 -mmacosx-version-min=10.14"
+# Set platform-specific flags
+if [[ "${target_platform}" == linux-* ]]; then
+  export EXTRA_CXXFLAGS="${CXXFLAGS} -std=c++17 -Wno-error=array-bounds"
+else
+  export EXTRA_CXXFLAGS="${CXXFLAGS} -std=c++17 -mmacosx-version-min=10.14"
+fi
 
 # Enabling jemalloc does not work on OSX with the following error message:
 # "error: unknown attribute 'je_malloc' ignored"
