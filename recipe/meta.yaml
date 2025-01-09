@@ -1,6 +1,9 @@
 {% set name = "rocksdb" %}
 {% set version = "9.10.0" %}
 
+{% set jemalloc_enabled = rocksdb_build_ext == "jemalloc" %}
+{% set build_ext = "_jemalloc" if jemalloc_enabled else ""  %}
+
 package:
   name: rocksdb
   version: {{ version }}
@@ -11,7 +14,8 @@ source:
   sha256: fdccab16133c9d927a183c2648bcea8d956fb41eb1df2aacaa73eb0b95e43724
 
 build:
-  number: 0
+  number: 1
+  string: h{{ PKG_HASH }}_{{ PKG_BUILDNUM }}{{ build_ext }}
   run_exports:
     # Symbols are removed from a minor release to the next.
     # https://abi-laboratory.pro/index.php?view=timeline&l=rocksdb
@@ -25,7 +29,7 @@ requirements:
     - ninja >=1.10,<2
   host:
     - gflags
-    - jemalloc  # [not win]
+    - jemalloc  # [rocksdb_build_ext == "jemalloc"]
     - lz4-c
     - snappy
     - zstd
