@@ -4,7 +4,8 @@ c_stdlib_version:          # [osx and x86_64]
   - "10.14"                # [osx and x86_64]
 
 rocksdb_build_ext:
-  - None
+  # Default build: no custom allocator, nor extension.
+  - default
   # Enabling jemalloc does not work on OSX with the following error message:
   # "error: unknown attribute 'je_malloc' ignored"
   # jemmaloc is not available on Windows for now.

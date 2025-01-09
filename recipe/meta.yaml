@@ -1,9 +1,6 @@
 {% set name = "rocksdb" %}
 {% set version = "9.10.0" %}
 
-{% set jemalloc_enabled = rocksdb_build_ext == "jemalloc" %}
-{% set build_ext = "_jemalloc" if jemalloc_enabled else ""  %}
-
 package:
   name: rocksdb
   version: {{ version }}
@@ -15,7 +12,7 @@ source:
 
 build:
   number: 1
-  string: h{{ PKG_HASH }}_{{ PKG_BUILDNUM }}{{ build_ext }}
+  string: h{{ PKG_HASH }}_{{ PKG_BUILDNUM }}_{{ rocksdb_build_ext }}
   run_exports:
     # Symbols are removed from a minor release to the next.
     # https://abi-laboratory.pro/index.php?view=timeline&l=rocksdb
