@@ -22,6 +22,8 @@ lz4_c:
 - '1.10'
 rocksdb:
 - '9.1'
+rocksdb_build_ext:
+- None
 snappy:
 - '1.2'
 target_platform:

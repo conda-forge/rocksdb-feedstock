@@ -24,6 +24,8 @@ macos_machine:
 - x86_64-apple-darwin13.4.0
 rocksdb:
 - '9.1'
+rocksdb_build_ext:
+- None
 snappy:
 - '1.2'
 target_platform:
