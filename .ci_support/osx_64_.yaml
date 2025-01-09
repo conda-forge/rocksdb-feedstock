@@ -25,7 +25,7 @@ macos_machine:
 rocksdb:
 - '9.1'
 rocksdb_build_ext:
-- None
+- default
 snappy:
 - '1.2'
 target_platform:
