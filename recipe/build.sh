@@ -8,12 +8,12 @@ else
   export CXXFLAGS="${CXXFLAGS} -std=c++17 -mmacosx-version-min=10.14"
 fi
 
-# Enabling jemalloc does not work on OSX with the following error message:
-# "error: unknown attribute 'je_malloc' ignored"
-if [[ "${target_platform}" == osx-* ]]; then
-  export WITH_JEMALLOC="OFF"
+if [[ ! -z "${rocksdb_build_ext+x}" && "${rocksdb_build_ext}" == "jemalloc" ]]; then
+    echo "Building with jemalloc"
+    export WITH_JEMALLOC="ON"
 else
-  export WITH_JEMALLOC="ON"
+    echo "Building without jemalloc"
+    export WITH_JEMALLOC="OFF"
 fi
 
 ### Create Makefiles

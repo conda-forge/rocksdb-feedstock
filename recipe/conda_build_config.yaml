@@ -2,3 +2,12 @@ MACOSX_SDK_VERSION:        # [osx and x86_64]
   - "10.14"                # [osx and x86_64]
 c_stdlib_version:          # [osx and x86_64]
   - "10.14"                # [osx and x86_64]
+
+rocksdb_build_ext:
+  # Default build: no custom allocator, nor extension.
+  - default
+  # Enabling jemalloc does not work on OSX with the following error message:
+  # "error: unknown attribute 'je_malloc' ignored"
+  # jemmaloc is not available on Windows for now.
+  # See: https://github.com/conda-forge/jemalloc-feedstock/blob/aa35a89f85c0c2a232a246a996da62d96eb0e132/recipe/meta.yaml#L16
+  - "jemalloc"  # [linux]
