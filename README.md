@@ -45,6 +45,34 @@ Current build status
                 </a>
               </td>
             </tr><tr>
+              <td>linux_aarch64_rocksdb_build_extdefault</td>
+              <td>
+                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=9522&branchName=main">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/rocksdb-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_aarch64_rocksdb_build_extdefault" alt="variant">
+                </a>
+              </td>
+            </tr><tr>
+              <td>linux_aarch64_rocksdb_build_extjemalloc</td>
+              <td>
+                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=9522&branchName=main">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/rocksdb-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_aarch64_rocksdb_build_extjemalloc" alt="variant">
+                </a>
+              </td>
+            </tr><tr>
+              <td>linux_ppc64le_rocksdb_build_extdefault</td>
+              <td>
+                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=9522&branchName=main">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/rocksdb-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_ppc64le_rocksdb_build_extdefault" alt="variant">
+                </a>
+              </td>
+            </tr><tr>
+              <td>linux_ppc64le_rocksdb_build_extjemalloc</td>
+              <td>
+                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=9522&branchName=main">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/rocksdb-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_ppc64le_rocksdb_build_extjemalloc" alt="variant">
+                </a>
+              </td>
+            </tr><tr>
               <td>osx_64</td>
               <td>
                 <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=9522&branchName=main">
@@ -196,6 +224,7 @@ Feedstock Maintainers
 
 * [@benhuff](https://github.com/benhuff/)
 * [@jeongseok-meta](https://github.com/jeongseok-meta/)
+* [@jjerphan](https://github.com/jjerphan/)
 * [@oblute](https://github.com/oblute/)
 * [@rluria14](https://github.com/rluria14/)
 * [@sodre](https://github.com/sodre/)
