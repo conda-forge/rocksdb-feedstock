@@ -1,5 +1,5 @@
 {% set name = "rocksdb" %}
-{% set version = "9.10.0" %}
+{% set version = "9.11.1" %}
 
 package:
   name: rocksdb
@@ -8,10 +8,10 @@ package:
 source:
   folder: src
   url: https://github.com/facebook/rocksdb/archive/v{{ version }}.tar.gz
-  sha256: fdccab16133c9d927a183c2648bcea8d956fb41eb1df2aacaa73eb0b95e43724
+  sha256: 4de14e6344fc77a7058bc4f2e02fdace9c86bd7145dd007b2d9ed119b7adbdc6
 
 build:
-  number: 2
+  number: 0
   string: h{{ PKG_HASH }}_{{ PKG_BUILDNUM }}_{{ rocksdb_build_ext }}
   run_exports:
     # Symbols are removed from a minor release to the next.
