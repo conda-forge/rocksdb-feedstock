@@ -3,7 +3,7 @@ set -eu
 
 # Set platform-specific flags
 if [[ "${target_platform}" == linux-* ]]; then
-  export CXXFLAGS="${CXXFLAGS} -std=c++17 -Wno-error=array-bounds"
+  export CXXFLAGS="${CXXFLAGS} -std=c++17 -Wno-error=array-bounds -Wno-error=attributes"
 else
   export CXXFLAGS="${CXXFLAGS} -std=c++17 -mmacosx-version-min=10.14"
 fi
