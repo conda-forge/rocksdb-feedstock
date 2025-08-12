@@ -1,5 +1,5 @@
 {% set name = "rocksdb" %}
-{% set version = "10.4.2" %}
+{% set version = "10.5.1" %}
 
 package:
   name: rocksdb
@@ -8,7 +8,7 @@ package:
 source:
   folder: src
   url: https://github.com/facebook/rocksdb/archive/v{{ version }}.tar.gz
-  sha256: afccfab496556904900afacf7d99887f1d50cb893e5d2288bd502db233adacac
+  sha256: 7ec942baab802b2845188d02bc5d4e42c29236e61bcbc08f5b3a6bdd92290c22
 
 build:
   number: 0

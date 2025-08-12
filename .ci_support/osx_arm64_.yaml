@@ -23,7 +23,7 @@ lz4_c:
 macos_machine:
 - arm64-apple-darwin20.0.0
 rocksdb:
-- '9.11'
+- '10.4'
 rocksdb_build_ext:
 - default
 snappy:
