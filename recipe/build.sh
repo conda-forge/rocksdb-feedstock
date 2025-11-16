@@ -8,6 +8,12 @@ else
   export CXXFLAGS="${CXXFLAGS} -std=c++17 -mmacosx-version-min=10.14"
 fi
 
+# Fix atomic library linking on macOS ARM - libatomic doesn't exist on macOS
+if [[ "${target_platform}" == "osx-arm64" ]]; then
+  # Modify CMakeLists.txt to skip atomic library check on macOS ARM
+  sed -i.bak 's/list(APPEND THIRDPARTY_LIBS atomic)/#list(APPEND THIRDPARTY_LIBS atomic) # Disabled on macOS ARM/' src/CMakeLists.txt
+fi
+
 if [[ ! -z "${rocksdb_build_ext+x}" && "${rocksdb_build_ext}" == "jemalloc" ]]; then
     echo "Building with jemalloc"
     export WITH_JEMALLOC="ON"
