@@ -16,6 +16,13 @@ else
     export WITH_JEMALLOC="OFF"
 fi
 
+# Force BUILTIN_ATOMIC on macOS ARM64 to avoid linking against non-existent libatomic
+if [[ "${target_platform}" == "osx-arm64" ]]; then
+  export BUILTIN_ATOMIC_FLAG="-DBUILTIN_ATOMIC=ON"
+else
+  export BUILTIN_ATOMIC_FLAG=""
+fi
+
 ### Create Makefiles
 cmake ${CMAKE_ARGS} -GNinja \
       -DCMAKE_PREFIX_PATH=$PREFIX \
@@ -35,6 +42,7 @@ cmake ${CMAKE_ARGS} -GNinja \
       -DWITH_ZLIB=ON \
       -DWITH_ZSTD=ON \
       -WITH_BZ2=ON \
+      ${BUILTIN_ATOMIC_FLAG} \
       -S src \
       -B build
 
