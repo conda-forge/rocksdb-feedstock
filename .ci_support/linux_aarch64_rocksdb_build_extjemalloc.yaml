@@ -19,7 +19,7 @@ gflags:
 lz4_c:
 - '1.10'
 rocksdb:
-- '10.6'
+- '10.7'
 rocksdb_build_ext:
 - jemalloc
 snappy:
