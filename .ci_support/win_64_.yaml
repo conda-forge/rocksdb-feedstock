@@ -13,7 +13,7 @@ gflags:
 lz4_c:
 - '1.10'
 rocksdb:
-- '10.7'
+- '10.9'
 rocksdb_build_ext:
 - default
 snappy:
