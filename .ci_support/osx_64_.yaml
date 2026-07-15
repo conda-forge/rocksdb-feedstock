@@ -15,15 +15,15 @@ channel_targets:
 cxx_compiler:
 - clangxx
 cxx_compiler_version:
-- '18'
+- '19'
 gflags:
-- '2.2'
+- '2.3'
 lz4_c:
 - '1.10'
 macos_machine:
 - x86_64-apple-darwin13.4.0
 rocksdb:
-- '9.11'
+- '11.0'
 snappy:
 - '1.2'
 target_platform:
