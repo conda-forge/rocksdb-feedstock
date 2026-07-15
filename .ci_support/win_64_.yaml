@@ -9,7 +9,7 @@ channel_targets:
 cxx_compiler:
 - vs2022
 gflags:
-- '2.2'
+- '2.3'
 lz4_c:
 - '1.10'
 rocksdb:
