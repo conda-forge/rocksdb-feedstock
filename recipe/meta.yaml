@@ -11,7 +11,7 @@ source:
   sha256: 3aba946031d27734eeea68ced7dd6f46629ba23a7b49945eb29aea68d1595311
 
 build:
-  number: 0
+  number: 1
   string: h{{ PKG_HASH }}_{{ PKG_BUILDNUM }}_{{ rocksdb_build_ext }}
   run_exports:
     # Symbols are removed from a minor release to the next.
