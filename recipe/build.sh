@@ -1,7 +1,7 @@
 #!/bin/bash
 set -eu
 
-export EXTRA_CXXFLAGS="${CXXFLAGS} -std=c++17 -mmacosx-version-min=10.14"
+export EXTRA_CXXFLAGS="${CXXFLAGS} -std=c++17 -mmacosx-version-min=11.0"
 
 # Enabling jemalloc does not work on OSX with the following error message:
 # "error: unknown attribute 'je_malloc' ignored"
