@@ -9,6 +9,8 @@ source:
   folder: src
   url: https://github.com/facebook/rocksdb/archive/v{{ version }}.tar.gz
   sha256: 618d9726a7cb1cf4ce034f4cdca49de98aa64867dda06b91371a791ae8921aff
+  patches:
+    - remove-unreachable-returns.patch
 
 build:
   number: 0
