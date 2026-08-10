@@ -1,5 +1,5 @@
 {% set name = "rocksdb" %}
-{% set version = "11.1.2" %}
+{% set version = "11.8.1" %}
 
 package:
   name: rocksdb
@@ -8,10 +8,12 @@ package:
 source:
   folder: src
   url: https://github.com/facebook/rocksdb/archive/v{{ version }}.tar.gz
-  sha256: 3aba946031d27734eeea68ced7dd6f46629ba23a7b49945eb29aea68d1595311
+  sha256: 618d9726a7cb1cf4ce034f4cdca49de98aa64867dda06b91371a791ae8921aff
+  patches:
+    - remove-unreachable-returns.patch
 
 build:
-  number: 1
+  number: 0
   string: h{{ PKG_HASH }}_{{ PKG_BUILDNUM }}_{{ rocksdb_build_ext }}
   run_exports:
     # Symbols are removed from a minor release to the next.
