@@ -1,0 +1,74 @@
+schema_version: 1
+
+context:
+  name: rocksdb
+  version: "11.8.1"
+  build_number: 1
+
+package:
+  name: rocksdb
+  version: ${{ version }}
+
+source:
+  url: https://github.com/facebook/rocksdb/archive/v${{ version }}.tar.gz
+  sha256: 618d9726a7cb1cf4ce034f4cdca49de98aa64867dda06b91371a791ae8921aff
+  target_directory: src
+  patches:
+    - remove-unreachable-returns.patch
+
+build:
+  number: ${{ build_number }}
+  string: h${{ hash }}_${{ build_number }}_${{ rocksdb_build_ext }}
+  script:
+    file: ${{ "build.bat" if win else "build.sh" }}
+
+requirements:
+  build:
+    - ${{ compiler("cxx") }}
+    - ${{ stdlib("c") }}
+    - cmake >=3.5.1,<4
+    - ninja >=1.10,<2
+  host:
+    - gflags
+    - if: rocksdb_build_ext == "jemalloc"
+      then: jemalloc
+    - lz4-c
+    - snappy
+    - zstd
+    - bzip2
+    - zlib
+  run_exports:
+    # Symbols are removed from one minor release to the next.
+    # https://abi-laboratory.pro/index.php?view=timeline&l=rocksdb
+    - ${{ pin_subpackage(name, upper_bound='x.x') }}
+
+tests:
+  - script:
+      - if: unix
+        then: test -f ${PREFIX}/lib/librocksdb.a
+      - if: unix
+        then: test -f ${PREFIX}/lib/librocksdb${SHLIB_EXT}
+      - if: unix
+        then: test -f ${PREFIX}/include/rocksdb/db.h
+      - if: win
+        then: if not exist %LIBRARY_PREFIX%\lib\rocksdb.lib exit 1
+      - if: win
+        then: if not exist %LIBRARY_PREFIX%\lib\rocksdb-shared.lib exit 1
+      - if: win
+        then: if not exist %LIBRARY_PREFIX%\include\rocksdb\db.h exit 1
+
+about:
+  license: Apache-2.0
+  license_file: src/LICENSE.Apache
+  summary: A library that provides an embeddable, persistent key-value store for fast storage.
+  homepage: https://rocksdb.org
+  repository: https://github.com/facebook/rocksdb
+  documentation: https://rocksdb.org/docs
+
+extra:
+  recipe-maintainers:
+    - jeongseok-meta
+    - benhuff
+    - oblute
+    - rluria14
+    - sodre
