@@ -2,7 +2,7 @@ schema_version: 1
 
 context:
   name: rocksdb
-  version: "11.12"
+  version: "11.13.2"
   build_number: 0
 
 package:
@@ -11,7 +11,7 @@ package:
 
 source:
   url: https://github.com/facebook/rocksdb/archive/v${{ version }}.tar.gz
-  sha256: d8a9d46f9182b47a8d4611c351d622518b1890b9e4e150d81478ab2f45ecd340
+  sha256: 6f12f408c4876175b1de73cfefcdd1baf0001ad8d799c1a09320d96e4fd213b5
   target_directory: src
 
 build:
