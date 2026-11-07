@@ -23,7 +23,7 @@ lz4_c:
 rocksdb_build_ext:
 - jemalloc
 snappy:
-- '1.2'
+- '1.3'
 target_platform:
 - linux-64
 zlib:
