@@ -2,3 +2,13 @@ MACOSX_SDK_VERSION:        # [osx and x86_64]
   - "11.0"                 # [osx and x86_64]
 c_stdlib_version:          # [osx and x86_64]
   - "11.0"                 # [osx and x86_64]
+# rocksdb 8.10.2 predates the upstream fixes for GCC 15 (missing <cstdint>
+# includes, facebook/rocksdb#13579 and #13651) and clang 20+
+# (-Werror=nontrivial-memcall, facebook/rocksdb#13864). Keep the compilers
+# that last built this branch.
+c_compiler_version:        # [linux or osx]
+  - "14"                   # [linux]
+  - "19"                   # [osx]
+cxx_compiler_version:      # [linux or osx]
+  - "14"                   # [linux]
+  - "19"                   # [osx]
