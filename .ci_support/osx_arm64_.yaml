@@ -23,7 +23,7 @@ macos_machine:
 rocksdb_build_ext:
 - default
 snappy:
-- '1.2'
+- '1.3'
 target_platform:
 - osx-arm64
 zlib:
