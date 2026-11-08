@@ -1,0 +1,7 @@
+# rocksdb 6.29 predates warnings added in clang 20+, such as
+# -Wunnecessary-virtual-specifier, which FAIL_ON_WARNINGS turns into errors.
+# Keep the compiler that last built this branch on macOS.
+c_compiler_version:        # [osx]
+  - "19"                   # [osx]
+cxx_compiler_version:      # [osx]
+  - "19"                   # [osx]
