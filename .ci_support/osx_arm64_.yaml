@@ -17,7 +17,7 @@ cxx_compiler_version:
 gflags:
 - '2.3'
 lz4_c:
-- '1.10'
+- '1.11'
 macos_machine:
 - arm64-apple-darwin20.0.0
 rocksdb_build_ext:

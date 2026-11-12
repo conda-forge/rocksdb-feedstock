@@ -19,7 +19,7 @@ docker_image:
 gflags:
 - '2.3'
 lz4_c:
-- '1.10'
+- '1.11'
 rocksdb_build_ext:
 - jemalloc
 snappy:
