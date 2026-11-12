@@ -3,6 +3,11 @@ set -eu
 
 export EXTRA_CXXFLAGS="${CXXFLAGS} -std=c++17 -mmacosx-version-min=11.0"
 
+# lz4 1.11 deprecates LZ4_resetStreamHC, which rocksdb 8.10 still calls, and
+# FAIL_ON_WARNINGS turns the warning into an error. The function still works;
+# upstream rocksdb no longer calls it after its compression API rework.
+export CXXFLAGS="${CXXFLAGS} -Wno-error=deprecated-declarations"
+
 # Enabling jemalloc does not work on OSX with the following error message:
 # "error: unknown attribute 'je_malloc' ignored"
 if [[ "${target_platform}" == osx-* ]]; then
