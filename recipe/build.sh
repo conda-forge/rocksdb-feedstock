@@ -1,9 +1,12 @@
 #!/bin/bash
 set -eu
 
+# lz4 1.11 deprecates LZ4_resetStreamHC, which rocksdb 6.29 still calls; the
+# function still works, so keep that deprecation warning non-fatal.
 CXXFLAGS="${CXXFLAGS} \
   -std=c++17 \
   -Wno-error=redundant-move \
+  -Wno-error=deprecated-declarations \
   -include cstdint \
   -include system_error"
 
