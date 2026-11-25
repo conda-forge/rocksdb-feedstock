@@ -13,7 +13,7 @@ channel_targets:
 cxx_compiler:
 - clangxx
 cxx_compiler_version:
-- '21'
+- '22'
 gflags:
 - '2.3'
 lz4_c:
@@ -29,4 +29,4 @@ target_platform:
 zlib:
 - '1'
 zstd:
-- '1.5'
+- '1.6'
